@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const body = require('body-parser');
 const { Pool } = require('pg');
+const http = require('http').Server(app);
 app.use(express.static('public'));
 app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
@@ -43,6 +44,6 @@ app.get('/user/:name/age/:age', async(req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log('Server started on ' + PORT);
 });
