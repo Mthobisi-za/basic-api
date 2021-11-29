@@ -25,21 +25,21 @@ if (connectionstr) {
 
 app.get('/getusers', async(req, res) => {
     var data = (await pool.query('select username from myusers')).rows;
-    res.send(data);
+    res.json(data);
 });
 app.get('/getages', async(req, res) => {
     var data = (await pool.query('select age from myusers')).rows;
-    res.send(data);
+    res.json(data);
 });
 app.get('/', async(req, res) => {
     var data = (await pool.query('select * from myusers')).rows;
-    res.send(data);
+    res.json(data);
 });
 app.get('/user/:name/age/:age', async(req, res) => {
     var name = req.params.name;
     var age = req.params.age;
     await pool.query('insert into myusers (username, age) values($1, $2)', [name, age]);
-    res.send({ 'done': 'done' });
+    res.json({ 'done': 'done' });
 });
 
 const PORT = process.env.PORT || 5000;
