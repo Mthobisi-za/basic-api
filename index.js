@@ -23,19 +23,19 @@ if (connectionstr) {
     });
 }
 
-app.get(`/getusers`, async(req, res) => {
+app.get('/getusers', async(req, res) => {
     var data = (await pool.query('select username from myusers')).rows;
     res.send(data);
 });
-app.get(`/getages`, async(req, res) => {
+app.get('/getages', async(req, res) => {
     var data = (await pool.query('select age from myusers')).rows;
     res.send(data);
 });
-app.get(`/`, async(req, res) => {
+app.get('/', async(req, res) => {
     var data = (await pool.query('select * from myusers')).rows;
     res.send(data);
 });
-app.get(`/user/:name/age/:age`, async(req, res) => {
+app.get('/user/:name/age/:age', async(req, res) => {
     var name = req.params.name;
     var age = req.params.age;
     await pool.query('insert into myusers (username, age) values($1, $2)', [name, age]);
