@@ -10,7 +10,7 @@ var pool;
 if (connectionstr) {
     pool = new Pool({
         connectionString: connectionstr,
-        ssl: false,
+        ssl: { rejectUnauthorized: false },
     });
 } else {
     pool = new Pool({
