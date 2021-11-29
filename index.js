@@ -41,6 +41,7 @@ app.get('/user/:name/age/:age', async(req, res) => {
     await pool.query('insert into myusers (username, age) values($1, $2)', [name, age]);
     res.send({ 'done': 'done' });
 });
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log('Server started on ' + PORT);
