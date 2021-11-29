@@ -3,9 +3,13 @@ const app = express();
 const body = require('body-parser');
 const { Pool } = require('pg');
 const http = require('http').Server(app);
+const cors = require('cors')
 app.use(express.static('public'));
 app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
+app.use(cors({
+    origin: "*"
+}));
 var connectionstr = process.env.DATABASE_URL;
 var pool;
 if (connectionstr) {
